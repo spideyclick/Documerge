@@ -1,0 +1,16 @@
+"This text will appear in the
+merged file, and comes from the
+new file."
+<!-- marker start-->
+    "This text will be replaced."
+<!-- marker end-->
+"This is some more text that will
+appear in the merged file, and
+also comes from the new file."
+<!-- marker start-->
+    "This is some more text that
+    will be replaced."
+<!-- marker end-->
+"This is the last text that will
+appear in the merged file, and it
+comes from the new file."
