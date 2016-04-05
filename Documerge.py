@@ -20,16 +20,25 @@ errorLog=''
 currentDir = os.path.dirname(os.path.realpath(sys.argv[0])) # The path up to the folder of the currently running script
 oldFiles = os.listdir(currentDir + osSlash + 'old')
 newFiles = os.listdir(currentDir + osSlash + 'new')
+if len(newFiles) == 1:
+    print('template mode ON')
+    templateMode=True
+else:
+    templateMode=False
+    print('template mode OFF')
 
 for file in oldFiles:
     if os.path.isfile(currentDir + osSlash + 'old' + osSlash + file) and file != os.path.basename(sys.argv[0]):
         print('')
         mergedData={}
-        if file not in newFiles:
+        if file not in newFiles and templateMode == False:
             errorLog+=('\nreplacement file not found for ' + file)
         else:
             print('Merging text in ' + file)
-            currentNewFile=open(str(currentDir + osSlash + 'new' + osSlash + file), 'r')
+            if templateMode == True:
+                currentNewFile=open(str(currentDir + osSlash + 'new' + osSlash + newFiles[0]), 'r')
+            else:
+                currentNewFile=open(str(currentDir + osSlash + 'new' + osSlash + file), 'r')
             currentOldFile=open(str(currentDir + osSlash + 'old' + osSlash + file), 'r')
             replacelines=True
             segmentNumber=0 # Evens
